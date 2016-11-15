@@ -29,6 +29,7 @@ func homepage(w http.ResponseWriter, r *http.Request) {
 			compiler.Compile()
 		} else {
 			inProgramFile, _, err := r.FormFile("inProgramFile")
+			defer inProgramFile.Close()
 			if err != nil {
 				io.WriteString(w, err.Error())
 			} else {

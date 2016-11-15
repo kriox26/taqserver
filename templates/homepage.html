@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>TAQCompiler</title>
+    </head>
+    <body>
+        <form action="homepage" method="post" accept-charset="utf-8">
+            <textarea name="inProgram" rows="12" cols="20"></textarea>
+            </br>
+            <input type="submit" value="Compile program" />
+        </form>
+
+        </br>
+        <form action="homepage" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+            <input type="file" name="inProgramFile" id="inProgramFile" />
+            </br>
+            <input type="submit" value="Compile file" />
+        </form>
+
+        {{ .OutputProgram }}
+        {{ .CompilationErrors }}
+    </body>
+</html>
