@@ -4,33 +4,72 @@
         <meta charset="utf-8" />
         <title>TAQCompiler</title>
 
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     </head>
     <body>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo center">TAQCompiler</a>
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li><a href="https://github.com/kriox26/TAQCompiler">Documentation</a></li>
+                </ul>
+            </div>
+        </nav>
         <div class="container">
             <div class="row">
-                <div class="cold-md-6">
-                    <form action="homepage" method="post" accept-charset="utf-8">
-                        <textarea name="inProgram" rows="12" cols="20"></textarea>
-                        </br>
-                        <input type="submit" class="btn btn-submit" value="Compile program" />
-                    </form>
-
-                    </br>
-                    <form action="homepage" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-                        <input type="file" name="inProgramFile" id="inProgramFile" />
-                        </br>
-                        <input type="submit" value="Compile file" />
-                    </form>
+                <div class="col s7 push-s5">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">TAQ program</span>
+                            <ul>
+                                {{ range .OutputProgram }}
+                                <li> {{ . }} </li>
+                                {{ end }}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Compilation errors</span>
+                            <ul>
+                                {{ range .CompilationErrors }}
+                                <li> {{ . }} </li>
+                                {{ end }}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+                    <div class="col s5 pull-s7">
+                        <form action="/" method="post" accept-charset="utf-8">
+                            <div class="input-field">
+                                <textarea name="inProgram" id="inProgram" class="materialize-textarea"></textarea>
+                            </div>
+                            <input type="submit" class="waves-effect waves-light btn" value="Compile program" />
+                        </form>
+                        <br/>
+                        <form action="/" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                            <div class="file-field input-field">
+                                <div class="btn">
+                                    <span>Program file</span>
+                                    <input type="file" name="inProgramFile" id="inProgramFile">
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text">
+                                </div>
+                            </div>
+                            <input type="submit" class="waves-effect waves-light btn" value="Compile" />
+                        </form>
 
-                <div class="col-md-6">
-                    {{ .OutputProgram }}
-                    {{ .CompilationErrors }}
+
                 </div>
-
             </div>
+
+            </br>
+
         </div>
     </body>
 </html>
